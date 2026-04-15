@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Caleb's 1st Birthday | Race Car Party! 🏁</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Black+Ops+One&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a1a2f;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 20% 35%, rgba(255,215,0,0.05) 1.5%, transparent 2%);
+            background-size: 35px 35px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .racing-car {
+            position: fixed;
+            font-size: 2.4rem;
+            z-index: 2;
+            pointer-events: none;
+            filter: drop-shadow(0 5px 8px rgba(0,0,0,0.6));
+            animation: raceAcross 10s linear infinite;
+            will-change: left;
+        }
+
+        @keyframes raceAcross {
+            0% { left: -120px; transform: translateX(0) scaleX(1); }
+            100% { left: 100vw; transform: translateX(0) scaleX(1); }
+        }
+
+        .racing-car:nth-child(1) { top: 8%; animation-duration: 9s; animation-delay: 0s; font-size: 2.5rem; }
+        .racing-car:nth-child(2) { top: 22%; animation-duration: 12s; animation-delay: 1.5s; font-size: 2rem; }
+        .racing-car:nth-child(3) { top: 45%; animation-duration: 7.5s; animation-delay: 0.8s; font-size: 2.2rem; }
+        .racing-car:nth-child(4) { top: 68%; animation-duration: 11s; animation-delay: 3s; font-size: 2rem; transform: scaleX(-1); }
+        .racing-car:nth-child(5) { top: 85%; animation-duration: 8.5s; animation-delay: 2.2s; font-size: 2.3rem; }
+        .racing-car:nth-child(6) { top: 15%; animation-duration: 14s; animation-delay: 4s; font-size: 1.9rem; transform: scaleX(-1); }
+        .racing-car:nth-child(7) { top: 55%; animation-duration: 6.8s; animation-delay: 0.5s; font-size: 2.1rem; }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            position: relative;
+            z-index: 15;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #DC1E32 0%, #B01628 55%, #8A0E1E 100%);
+            border-radius: 3rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 40px -12px rgba(0,0,0,0.6);
+            border: 3px solid #FFD700;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 28px;
+            background: repeating-linear-gradient(90deg, 
+                #000000 0px, #000000 22px, 
+                #FFFFFF 22px, #FFFFFF 44px);
+        }
+        
+        .hero::before {
+            content: "🏁🏎️🏁🏎️🏁";
+            position: absolute;
+            top: 12px;
+            right: 20px;
+            font-size: 60px;
+            opacity: 0.2;
+            font-family: monospace;
+            white-space: nowrap;
+        }
+        @media (max-width: 600px) {
+            .hero::before { font-size: 40px; opacity: 0.1; }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #FFD700;
+            padding: 0.7rem 2.2rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+            border: 2px solid #000;
+            box-shadow: 0 6px 0 #000;
+        }
+
+        .hero-badge i { color: #DC1E32; font-size: 1.3rem; }
+        .hero-badge span { color: #000; font-weight: 900; letter-spacing: 2px; font-size: 0.9rem; }
+
+        .hero h1 {
+            font-family: 'Black Ops One', cursive;
+            font-size: 5rem;
+            font-weight: 400;
+            color: #FFD700;
+            text-shadow: 6px 6px 0 #000, 4px 4px 0 #000;
+            letter-spacing: 4px;
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.8rem; }
+        }
+
+        .hero h1 span {
+            color: #FFFFFF;
+            background: #000;
+            padding: 0 20px;
+            display: inline-block;
+            border-radius: 30px;
+            text-shadow: none;
+        }
+
+        .hero-sub {
+            font-size: 1.3rem;
+            color: #FFFFFF;
+            margin-top: 1.5rem;
+            background: #000;
+            display: inline-block;
+            padding: 0.7rem 2rem;
+            border-radius: 60px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            border-left: 5px solid #FFD700;
+            border-right: 5px solid #FFD700;
+        }
+
+        .race-number {
+            position: absolute;
+            bottom: 55px;
+            left: 25px;
+            background: #000;
+            color: #FFD700;
+            font-family: 'Black Ops One', cursive;
+            font-size: 3rem;
+            padding: 0 15px;
+            border-radius: 20px;
+            border: 2px solid #FFD700;
+            transform: rotate(-8deg);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.4);
+        }
+        @media (max-width: 600px) {
+            .race-number { font-size: 1.8rem; bottom: 15px; left: 12px; }
+        }
+
+        /* REDESIGNED PROFILE CARD - more premium */
+        .profile-card {
+            background: linear-gradient(135deg, #FFFFFF 0%, #FFF8E7 100%);
+            border-radius: 2rem;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 25px 40px -12px black;
+            border: 3px solid #FFD700;
+            position: relative;
+        }
+
+        .profile-card::before {
+            content: "🏆 CHAMPION'S PODIUM 🏆";
+            position: absolute;
+            top: -12px;
+            right: 30px;
+            background: #DC1E32;
+            color: #FFD700;
+            padding: 0.4rem 1.5rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 6;
+            border: 2px solid #FFD700;
+            letter-spacing: 1px;
+        }
+
+        .profile-inner {
+            padding: 2.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Racing stripes decoration */
+        .profile-inner::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: repeating-linear-gradient(90deg, 
+                #DC1E32 0px, #DC1E32 30px, 
+                #FFD700 30px, #FFD700 60px);
+        }
+
+        .avatar {
+            flex: 0 0 180px;
+            text-align: center;
+            position: relative;
+        }
+
+        .avatar::before {
+            content: "";
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            right: -12px;
+            bottom: -12px;
+            background: repeating-linear-gradient(45deg, 
+                #DC1E32 0px, #DC1E32 10px, 
+                #FFD700 10px, #FFD700 20px);
+            border-radius: 50%;
+            z-index: 0;
+            animation: rotateBorder 8s linear infinite;
+        }
+
+        @keyframes rotateBorder {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .avatar img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #DC1E32;
+            position: relative;
+            z-index: 1;
+            background: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .invite-message {
+            flex: 1;
+        }
+
+        .invite-message h2 {
+            font-family: 'Black Ops One', cursive;
+            font-size: 2.2rem;
+            color: #DC1E32;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .invite-message h2 i {
+            color: #FFD700;
+            text-shadow: 2px 2px 0 #DC1E32;
+            font-size: 2rem;
+        }
+
+        .driver-title {
+            display: inline-block;
+            background: #DC1E32;
+            color: #FFD700;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            letter-spacing: 2px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        .invite-message p {
+            color: #1e1e2a;
+            line-height: 1.8;
+            margin: 1rem 0;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .invite-message p i {
+            color: #DC1E32;
+            margin: 0 3px;
+        }
+
+        .tire-track {
+            width: 100%;
+            height: 6px;
+            background: repeating-linear-gradient(90deg, 
+                #333 0px, #333 20px, 
+                #aaa 20px, #aaa 40px);
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        .signature {
+            font-family: 'Black Ops One', cursive;
+            color: #DC1E32;
+            font-size: 1.3rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #FFD70020, #DC1E3220);
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+        }
+
+        .signature i {
+            font-size: 1.2rem;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+            padding: 1.8rem;
+            background: #FEF9E6;
+            border-top: 4px solid #FFD700;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 1.2rem;
+            transition: all 0.3s ease;
+            border: 2px solid #000;
+            box-shadow: 7px 7px 0 rgba(0,0,0,0.1);
+        }
+
+        .detail-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 10px 10px 0 rgba(0,0,0,0.15);
+        }
+
+        .detail-icon {
+            width: 60px;
+            height: 60px;
+            background: #DC1E32;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFD700;
+            font-size: 1.8rem;
+            border: 2px solid #000;
+        }
+
+        .detail-text h4 {
+            font-size: 0.7rem;
+            color: #DC1E32;
+            letter-spacing: 2px;
+            font-weight: 900;
+        }
+
+        .detail-text p {
+            font-weight: 800;
+            color: #000;
+            font-size: 1rem;
+        }
+        
+        .detail-text a {
+            font-weight: 800;
+            color: #DC1E32;
+            text-decoration: none;
+            border-bottom: 3px solid #FFD700;
+        }
+
+        .album-section {
+            background: #071126;
+            border-radius: 2rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.5);
+            border: 3px solid #FFD700;
+            position: relative;
+        }
+
+        .section-title h3 {
+            font-family: 'Black Ops One', cursive;
+            font-size: 2rem;
+            color: #FFD700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 0 #DC1E32;
+        }
+
+        .landscape-photo {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #111;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 5px solid #FFD700;
+            position: relative;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .landscape-photo:hover {
+            transform: scale(1.01);
+        }
+        .landscape-photo::before {
+            content: "📸 VICTORY MOMENTS!";
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: #000;
+            color: #FFD700;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            z-index: 2;
+            border: 1px solid #FFD700;
+        }
+        .landscape-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .landscape-photo:hover img {
+            transform: scale(1.05);
+        }
+
+        .square-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+        @media (max-width: 768px) {
+            .square-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .square-photo {
+            aspect-ratio: 1;
+            background: #222;
+            border-radius: 1rem;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid #FFD700;
+            position: relative;
+        }
+        .square-photo:hover {
+            transform: translateY(-8px) rotate(2deg);
+            border-color: #DC1E32;
+        }
+        .square-photo::after {
+            content: "🏁";
+            position: absolute;
+            top: 5px;
+            right: 8px;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        .square-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .photo-caption {
+            text-align: center;
+            margin-top: 1.2rem;
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        /* VIDEO SECTION - with autoplay & sound enabled */
+        .video-memory {
+            background: linear-gradient(145deg, #0f1a2c, #03070f);
+            border-radius: 2rem;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            border: 2px solid #FFD700;
+            text-align: center;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.4);
+        }
+
+        .video-label {
+            display: inline-block;
+            background: #DC1E32;
+            padding: 0.4rem 1.4rem;
+            border-radius: 60px;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+        }
+
+        .video-wrapper {
+            max-width: 320px;
+            margin: 0 auto;
+            border-radius: 1.8rem;
+            overflow: hidden;
+            border: 5px solid #FFD700;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        /* Play button overlay */
+        .video-wrapper::after {
+            content: "🔊 TAP FOR SOUND/PAUSE";
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            color: #FFD700;
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-weight: bold;
+            pointer-events: none;
+            z-index: 10;
+            white-space: nowrap;
+            font-family: monospace;
+            backdrop-filter: blur(3px);
+        }
+        
+        @media (max-width: 500px) {
+            .video-wrapper::after {
+                font-size: 8px;
+                white-space: nowrap;
+                content: "🔊 TAP";
+            }
+        }
+        
+        .video-wrapper:hover {
+            transform: scale(1.02);
+        }
+        
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #000;
+        }
+        
+        .video-caption {
+            margin-top: 1rem;
+            color: #FFD700;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .autoplay-hint {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+            background: #00000066;
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+        }
+        
+        .autoplay-hint i {
+            margin-right: 5px;
+        }
+
+        .gift-section {
+            background: #0e1625;
+            border-radius: 2rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 3px solid #FFD700;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gift-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 12px;
+            height: 100%;
+            background: repeating-linear-gradient(180deg, 
+                #000 0px, #000 20px, 
+                #FFD700 20px, #FFD700 40px);
+        }
+
+        .gift-section h4 {
+            font-family: 'Black Ops One', cursive;
+            font-size: 1.8rem;
+            color: #FFD700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 3px solid #DC1E32;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .gift-section h4 i {
+            color: #DC1E32;
+            background: #FFD700;
+            padding: 8px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .gift-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .gift-list li {
+            background: #1a243e;
+            padding: 0.9rem 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-radius: 1rem;
+            border-left: 8px solid #FFD700;
+            color: #f0f0f0;
+            transition: 0.2s;
+        }
+        
+        .gift-list li:hover {
+            transform: translateX(8px);
+            background: #DC1E32;
+            color: white;
+        }
+        
+        .gift-list li i {
+            width: 35px;
+            color: #FFD700;
+            font-size: 1.4rem;
+            text-shadow: 1px 1px 0 #000;
+        }
+        
+        .gift-list li:hover i {
+            color: #000;
+        }
+
+        .gift-note {
+            background: #000000aa;
+            backdrop-filter: blur(4px);
+            padding: 1rem;
+            border-radius: 1rem;
+            text-align: center;
+            color: #FFD700;
+            font-weight: 600;
+            margin-top: 1rem;
+            border: 1px dashed #FFD700;
+        }
+        
+        .gift-note i {
+            margin-right: 8px;
+        }
+
+        .countdown-card {
+            background: linear-gradient(135deg, #0b1428, #101b36);
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border: 3px solid #FFD700;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+        
+        .countdown-title {
+            color: #FFD700;
+            font-size: 1.7rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            font-family: 'Black Ops One', cursive;
+        }
+        
+        .countdown-flex {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            background: #000;
+            padding: 1rem 1.8rem;
+            border-radius: 1.2rem;
+            min-width: 110px;
+            border: 2px solid #FFD700;
+        }
+        
+        .countdown-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            font-family: 'Black Ops One', cursive;
+            background: linear-gradient(135deg, #DC1E32, #FFD700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        @media (max-width: 600px) {
+            .countdown-number { font-size: 1.8rem; }
+            .countdown-item { min-width: 75px; padding: 0.6rem 0.8rem; }
+        }
+
+        .rsvp-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .rsvp-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.8rem;
+        }
+        
+        .btn-fb, .btn-messenger {
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        
+        .btn-fb {
+            background: #1877F2;
+            color: white;
+            border-bottom: 5px solid #0D5BB5;
+        }
+        
+        .btn-messenger {
+            background: #0084FF;
+            color: white;
+            border-bottom: 5px solid #0063C2;
+        }
+        
+        .btn-fb:hover, .btn-messenger:hover {
+            transform: translateY(-4px);
+            filter: brightness(1.07);
+        }
+        
+        .guest-message {
+            background: #000;
+            border-radius: 1.5rem;
+            padding: 1.3rem;
+            margin-top: 1.5rem;
+            color: #FFD700;
+            font-weight: 600;
+            border: 2px solid #FFD700;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: #FFD700;
+            font-weight: 700;
+            background: rgba(0,0,0,0.8);
+            border-radius: 2rem;
+            margin-top: 1rem;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: all 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.96);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 1.5rem;
+            border: 6px solid #FFD700;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            font-size: 3.5rem;
+            color: #FFD700;
+            cursor: pointer;
+        }
+        
+        /* sound permission hint */
+        .permission-banner {
+            background: #000000cc;
+            color: #FFD700;
+            border-radius: 40px;
+            padding: 0.3rem 1rem;
+            font-size: 0.7rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="racing-car">🏎️💨🔥</div>
+<div class="racing-car">🏁🏎️💨</div>
+<div class="racing-car">🚗💨⚡</div>
+<div class="racing-car">🏎️🏁💨</div>
+<div class="racing-car">🏎️🔥💨</div>
+<div class="racing-car">🏁🚗💨</div>
+<div class="racing-car">🏎️⚡💨</div>
+
+<div class="container">
+    <div class="hero fade-up">
+        <div class="race-number">#1</div>
+        <div class="hero-badge">
+            <i class="fas fa-flag-checkered"></i>
+            <span>START YOUR ENGINES!</span>
+            <i class="fas fa-car-side"></i>
+        </div>
+        <h1>CALEB'S <span>1ST</span> BIRTHDAY</h1>
+        <div class="hero-sub">
+            <i class="fas fa-flag-checkered"></i> A RACE CAR CELEBRATION <i class="fas fa-car-side"></i>
+        </div>
+    </div>
+
+    <!-- REDESIGNED PROFILE SECTION -->
+    <div class="profile-card fade-up">
+        <div class="profile-inner">
+            <div class="avatar">
+                <img src="images/caleb10.png" alt="Caleb" onerror="this.src='https://placehold.co/400x400/DC1E32/FFD700?text=🏎️+CALEB+🏎️'">
+            </div>
+            <div class="invite-message">
+                <h2>
+                    <i class="fas fa-crown"></i> MEET OUR LITTLE SPEEDSTER!
+                    <span class="driver-title">DRIVER #1</span>
+                </h2>
+                <p>
+                    <i class="fas fa-trophy"></i> Our champion Caleb is taking his <strong>FIRST VICTORY LAP</strong> around the sun! 
+                    Join us for a high-octane morning filled with <strong>Jollibee treats</strong>, roaring fun, and beautiful memories. 
+                    Buckle up for a party full of love and laughter!
+                </p>
+            </div>
+        </div>
+
+        <div class="details">
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-calendar-alt"></i></div>
+                <div class="detail-text"><h4>RACE DAY</h4><p>Saturday, April 18, 2026</p></div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-clock"></i></div>
+                <div class="detail-text"><h4>GREEN FLAG</h4><p>9:00 AM - 11:00 AM</p></div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="detail-text">
+                    <h4>RACE TRACK</h4>
+                    <p><a href="https://maps.app.goo.gl/RP1p8jwFq2Xfjyhs9" target="_blank">📍 Jollibee - McArthur Hwy, Nancayasan, Pangasinan <i class="fas fa-external-link-alt"></i></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHOTO ALBUM -->
+    <div class="album-section fade-up">
+        <div class="section-title">
+            <h3><i class="fas fa-flag-checkered"></i> CALEB'S ROOKIE YEAR <i class="fas fa-heart"></i></h3>
+        </div>
+        <div class="landscape-photo">
+            <img src="images/caleb9.png" alt="Caleb milestone" onerror="this.src='https://placehold.co/1200x675/DC1E32/FFD700?text=🏎️+VICTORY+LAP+🏎️'">
+        </div>
+        <div class="square-grid">
+            <div class="square-photo"><img src="images/caleb7.jpg" alt="Caleb 1" onerror="this.src='https://placehold.co/400x400/FFD700/DC1E32?text=🏁'"></div>
+            <div class="square-photo"><img src="images/caleb2.jpg" alt="Caleb 2" onerror="this.src='https://placehold.co/400x400/FFD700/DC1E32?text=🏎️'"></div>
+            <div class="square-photo"><img src="images/caleb3.jpg" alt="Caleb 3" onerror="this.src='https://placehold.co/400x400/FFD700/DC1E32?text=💨'"></div>
+            <div class="square-photo"><img src="images/caleb15.jpg" alt="Caleb 4" onerror="this.src='https://placehold.co/400x400/FFD700/DC1E32?text=🏁'"></div>
+            <div class="square-photo"><img src="images/caleb11.jpg" alt="Caleb 5" onerror="this.src='https://placehold.co/400x400/FFD700/DC1E32?text=🏎️'"></div>
+        </div>
+        <div class="photo-caption"><i class="fas fa-camera"></i> CLICK ANY PHOTO TO ZOOM IN 🏁</div>
+    </div>
+
+    <!-- VIDEO SECTION - WITH AUDIO AUTOPLAY (once scrolled & user gesture readiness) -->
+    <div class="video-memory fade-up" id="videoSection">
+        <div class="video-label"><i class="fas fa-heart"></i> LITTLE RACER'S HEARTBEAT <i class="fas fa-heart"></i></div>
+        <div class="video-wrapper" id="videoTrigger">
+            <video id="calebSentimentalVideo" playsinline preload="auto" muted poster="https://placehold.co/400x600/DC1E32/FFD700?text=CALEB'S+FIRST+YEAR" style="width:100%;">
+                <source src="images/calebvid.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="video-caption">Caleb's magical first year</div>
+    </div>
+
+    <!-- GIFT SECTION -->
+    <div class="gift-section fade-up">
+        <h4><i class="fas fa-wrench"></i> PIT CREW GIFT GUIDE</h4>
+        <ul class="gift-list">
+            <li><i class="fas fa-book"></i> Board books / Touch & feel books</li>
+            <li><i class="fas fa-car"></i> Baby toys</li>
+            <li><i class="fas fa-tshirt"></i> Cute clothes (size 12-18m)</li>
+            <li><i class="fas fa-piggy-bank"></i> Savings for Caleb's future fund</li>
+            <li><i class="fas fa-baby-carriage"></i> Baby essentials</li>
+        </ul>
+        <div class="gift-note">Your presence is the real victory! But if you'd like to bring a gift, these are pit crew favorites.</div>
+    </div>
+
+    <div class="countdown-card fade-up">
+        <div class="countdown-title"><i class="fas fa-hourglass-half"></i> COUNTDOWN TO GREEN FLAG</div>
+        <div class="countdown-flex">
+            <div class="countdown-item"><div class="countdown-number" id="days">00</div><div>DAYS</div></div>
+            <div class="countdown-item"><div class="countdown-number" id="hours">00</div><div>HOURS</div></div>
+            <div class="countdown-item"><div class="countdown-number" id="minutes">00</div><div>MINUTES</div></div>
+            <div class="countdown-item"><div class="countdown-number" id="seconds">00</div><div>SECONDS</div></div>
+        </div>
+    </div>
+
+    <div class="rsvp-section fade-up">
+        <div class="rsvp-buttons">
+            <a href="https://www.facebook.com/igotsomejam" class="btn-fb" target="_blank"><i class="fab fa-facebook"></i> RSVP ON FACEBOOK/MESSENGER</a>
+        </div>
+        <div class="guest-message">
+            CONFIRM YOUR SPOT IN THE PIT CREW! <br>
+            <span style="font-size:0.75rem;">Click the button above to message Mommy and let her know you're coming </span>
+        </div>
+    </div>
+
+    <div class="footer">
+        <i class="fas fa-flag-checkered"></i> SEE YOU AT THE FINISH LINE! CALEB'S 1ST BIRTHDAY
+    </div>
+</div>
+
+<div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightboxImg" src="">
+</div>
+
+<script>
+    // Countdown timer
+    function updateCountdown() {
+        const target = new Date(2026, 3, 18, 9, 0, 0);
+        const now = new Date();
+        const diff = target - now;
+        if (diff <= 0) {
+            document.getElementById('days').innerHTML = '00';
+            document.getElementById('hours').innerHTML = '00';
+            document.getElementById('minutes').innerHTML = '00';
+            document.getElementById('seconds').innerHTML = '00';
+            return;
+        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (86400000)) / 3600000);
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+        document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+    
+    // Scroll animation
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    fadeElements.forEach(el => observer.observe(el));
+    
+    // --- VIDEO AUTOPLAY WITH SOUND (using user interaction + scroll trigger) ---
+    const videoElem = document.getElementById('calebSentimentalVideo');
+    const videoSectionDiv = document.getElementById('videoSection');
+    let videoPlayed = false;
+    let soundUnlocked = false;
+    
+    // Modern browsers require a user gesture to unmute & play. We'll use a one-time tap on any part of the page to unlock audio.
+    // But we can also combine: when video comes into view, if user hasn't interacted, we attempt to play muted first,
+    // then unmute? That still won't give sound automatically. To truly get sound autoplay, we must have had a prior user gesture.
+    // Therefore we'll detect a simple page click/tap anywhere to enable audio context, then autoplay with sound when scrolled.
+    function unlockAudioAndPlay() {
+        if (!soundUnlocked) {
+            soundUnlocked = true;
+            // unmute video if it exists
+            if (videoElem) videoElem.muted = false;
+            // try to play if video is already visible and not yet played
+            if (videoElem && videoPlayed === false && videoSectionDiv && isElementInViewport(videoSectionDiv, 0.5)) {
+                attemptPlayWithSound();
+            }
+            // update hint
+            const hintBanner = document.getElementById('soundHint');
+            if (hintBanner) hintBanner.innerHTML = '<i class="fas fa-check-circle"></i>';
+            setTimeout(() => {
+                if (hintBanner) hintBanner.style.opacity = '0.7';
+            }, 3000);
+        }
+    }
+    
+    function isElementInViewport(el, threshold = 0.5) {
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        const visiblePart = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+        const elementHeight = rect.height;
+        if (elementHeight === 0) return false;
+        return visiblePart / elementHeight >= threshold;
+    }
+    
+    function attemptPlayWithSound() {
+        if (!videoElem || videoPlayed) return;
+        // Ensure we are not muted for sound
+        videoElem.muted = false;
+        videoElem.play().then(() => {
+            videoPlayed = true;
+            console.log("Video playing with sound!");
+            canvasConfetti({ particleCount: 80, spread: 60, origin: { y: 0.7 }, colors: ['#FFD700', '#DC1E32'] });
+            // Remove the muted attribute and any forced state
+        }).catch(err => {
+            console.log("Playback with sound failed, might need stronger gesture:", err);
+            // If autoplay blocked, we retry on next scroll or click? but we'll set a flag.
+            videoPlayed = false;
+            // if error because not user gesture, wait for click
+            if (err.name === "NotAllowedError") {
+                // prompt hint again
+                const hintBanner = document.getElementById('soundHint');
+                if (hintBanner) hintBanner.innerHTML = '<i class="fas fa-hand-pointer"></i>';
+            }
+        });
+    }
+    
+    // Setup: video starts muted to allow autoplay potential without sound? but we want sound.
+    // We'll initially set muted = true to satisfy browsers that block unmuted autoplay, but after user gesture we unmute and play.
+    // However we want the final result: when user scrolls, it plays with sound. So we set video muted initially, but after any click or tap, we unmute.
+    // Then when scroll triggers, we call play with unmuted.
+    if (videoElem) {
+        videoElem.muted = true; // start muted to allow at least autoplay of muted version, but we will unmute after interaction
+        videoElem.setAttribute('playsinline', '');
+    }
+    
+    // Add global event listener for first user interaction (tap, click) to unlock sound
+    const unlockEvents = ['click', 'touchstart', 'touchend'];
+    function globalUnlockHandler() {
+        unlockAudioAndPlay();
+        unlockEvents.forEach(ev => document.removeEventListener(ev, globalUnlockHandler));
+    }
+    unlockEvents.forEach(ev => document.addEventListener(ev, globalUnlockHandler, { once: false, passive: true }));
+    
+    // Intersection observer for video autoplay (with sound if unlocked, else try muted but we ensure sound unlocked first)
+    let videoObserved = false;
+    const videoIntersectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !videoPlayed) {
+                if (soundUnlocked) {
+                    // sound already enabled
+                    attemptPlayWithSound();
+                } else {
+                    // no interaction yet: we can try to play muted but that defeats "with audio". So we show hint and wait for tap
+                    // but we will try muted play just to get video moving? But spec wants with audio. We'll instead prompt user.
+                    // For better UX: if no gesture, we play muted and then unmute on first click?
+                    // But better to wait until global unlock. We'll set a message.
+                    const hintBanner = document.getElementById('soundHint');
+                    // attempt muted play just for preview? optional.
+                    if (videoElem && videoElem.paused) {
+                        videoElem.muted = true;
+                        videoElem.play().catch(e => console.log("muted auto preview blocked"));
+                    }
+                }
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    if (videoSectionDiv) videoIntersectionObserver.observe(videoSectionDiv);
+    
+    // Manual tap on video wrapper: toggle pause and ensure sound is on & unmuted
+    const videoWrapper = document.getElementById('videoTrigger');
+    if (videoWrapper && videoElem) {
+        videoWrapper.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!soundUnlocked) {
+                unlockAudioAndPlay();
+            }
+            // ensure unmuted
+            videoElem.muted = false;
+            if (videoElem.paused) {
+                videoElem.play().then(() => {
+                    canvasConfetti({ particleCount: 60, spread: 50, origin: { y: 0.7 }, colors: ['#FFD700'] });
+                }).catch(err => console.log("play error on click", err));
+            } else {
+                videoElem.pause();
+            }
+        });
+    }
+    
+    // when video ends, burst confetti
+    if (videoElem) {
+        videoElem.addEventListener('ended', () => {
+            canvasConfetti({ particleCount: 130, spread: 80, origin: { y: 0.5 }, colors: ['#FFD700', '#FFFFFF', '#DC1E32'] });
+        });
+    }
+    
+    // If user clicks anywhere else and video is not played, we also attempt to play when they explicitly scroll? already handled.
+    // Additional helper: on load, pre-warm
+    setTimeout(() => {
+        if (videoElem && !videoPlayed && soundUnlocked && isElementInViewport(videoSectionDiv, 0.5)) {
+            attemptPlayWithSound();
+        }
+    }, 1000);
+    
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    function openLightbox(src) { lightboxImg.src = src; lightbox.style.display = 'flex'; }
+    document.querySelector('.lightbox-close').addEventListener('click', () => { lightbox.style.display = 'none'; });
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.style.display = 'none'; });
+    document.querySelectorAll('.landscape-photo img, .square-photo img').forEach(img => {
+        img.addEventListener('click', (e) => { e.stopPropagation(); openLightbox(img.src); });
+    });
+    
+    // Initial confetti
+    setTimeout(() => {
+        canvasConfetti({ particleCount: 150, spread: 100, origin: { y: 0.6 }, colors: ['#DC1E32', '#FFD700', '#000000', '#FFFFFF'] });
+    }, 600);
+</script>
+</body>
+</html>
